@@ -25,6 +25,3 @@ figures/*
 !figures/.gitkeep
 results/*
 !results/.gitkeep
-
-# Course PDFs
-assignment/
