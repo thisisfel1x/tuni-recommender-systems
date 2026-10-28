@@ -13,13 +13,6 @@ env/
 .idea/
 .vscode/
 
-# Data (download yourself, see README) and caches
-data/*
-!data/.gitkeep
-ml-1m/
-*.dat
-cache/
-
 # Generated outputs are recreated by run_all.py
 figures/*
 !figures/.gitkeep
