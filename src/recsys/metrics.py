@@ -19,7 +19,7 @@ def recall_at_k(ranked: np.ndarray, relevant: set, k: int = 10) -> float:
     hits = sum(1 for item in ranked[:k] if item in relevant)
     return hits / len(relevant)
 
-
+# https://www.evidentlyai.com/ranking-metrics/ndcg-metric
 def ndcg_at_k(ranked: np.ndarray, relevant: set, k: int = 10) -> float:
     if not relevant:
         return 0.0
