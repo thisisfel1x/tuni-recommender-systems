@@ -249,7 +249,7 @@ def evaluate(score, data, eval_ratings: pd.DataFrame) -> dict:
 
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--data-dir", type=Path, required=True, help="directory containing ratings.dat")
+    p.add_argument("--data-dir", type=Path, default=Path("data"), required=True, help="directory containing ratings.dat")
     p.add_argument("--out-dir", type=Path, default=Path("results"))
     p.add_argument("--fig-dir", type=Path, default=Path("figures"))
     p.add_argument("--seed", type=int, default=SEED)
