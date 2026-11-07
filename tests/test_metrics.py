@@ -64,3 +64,24 @@ def test_temporal_split():
     assert val["timestamp"].max() < test["timestamp"].min()
 
     assert len(train) + len(val) + len(test) == len(ratings)
+
+
+def test_full_catalogue():
+    from run_all import index_data
+
+    ratings = pd.DataFrame({
+        "user": [1, 2],
+        "item": [10, 20],
+        "rating": [5, 4],
+        "timestamp": [100, 200],
+    })
+
+    catalogue = [10, 20, 30]
+
+    data = index_data(ratings, catalogue)
+
+    assert len(data.item_ids) == 3
+    assert set(data.item_ids) == {10, 20, 30}
+    assert data.shape == (2, 3)
+
+    assert data.counts[2] == 0
