@@ -4,7 +4,7 @@ Charleen Lang, Felix Weber, Vinicius Martins
 
 ## Setup
 
-Python 3.11, dependencies pinned in `requirements.txt`.
+Python 3.11, dependencies pinned in `requirements.txt`
 
 ```bash
 python3.11 -m venv .venv
@@ -15,7 +15,7 @@ pip install -r requirements.txt
 ## Data
 
 Download MovieLens 1M from https://grouplens.org/datasets/movielens/1m/ and unzip it.
-The data directory must contain `ratings.dat` and `movies.dat`.
+The data directory must contain `ratings.dat` and `movies.dat`
 
 ## Run
 
