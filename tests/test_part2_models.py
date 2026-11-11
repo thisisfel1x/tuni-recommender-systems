@@ -6,6 +6,7 @@ import pandas as pd
 
 from run_all import index_data
 from part2_models import content_based
+from part2_models import matrix_factorization
 
 
 def test_content_based_scores():
@@ -63,3 +64,56 @@ def test_content_based_invalid_weight():
 
     with pytest.raises(ValueError):
         content_based(data, movies, year_weight=-1.0)
+
+
+def test_matrix_factorization_scores():
+    ratings = pd.DataFrame({
+        "user": [1, 1, 2, 2],
+        "item": [10, 20, 10, 20],
+        "rating": [5, 1, 1, 5],
+        "timestamp": [1, 2, 3, 4],
+    })
+
+    data = index_data(
+        ratings,
+        catalogue_ids=np.array([10, 20, 30]),
+    )
+
+    model = matrix_factorization(
+        data,
+        n_factors=8,
+        n_epochs=50,
+        learning_rate=0.01,
+        batch_size=2,
+        seed=123,
+    )
+
+    scores = model(np.array([0, 1]))
+
+    assert scores.shape == (2, 3)
+    assert np.isfinite(scores).all()
+
+    # User 1 prefers item 10.
+    assert scores[0, 0] > scores[0, 1]
+
+    # User 2 prefers item 20.
+    assert scores[1, 1] > scores[1, 0]
+
+
+def test_matrix_factorization_invalid_parameters():
+    import pytest
+
+    ratings = pd.DataFrame({
+        "user": [1],
+        "item": [10],
+        "rating": [5],
+        "timestamp": [1],
+    })
+
+    data = index_data(
+        ratings,
+        catalogue_ids=np.array([10]),
+    )
+
+    with pytest.raises(ValueError):
+        matrix_factorization(data, n_factors=0)
