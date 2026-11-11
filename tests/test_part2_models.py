@@ -5,8 +5,11 @@ import numpy as np
 import pandas as pd
 
 from run_all import index_data
-from part2_models import content_based
-from part2_models import matrix_factorization
+from part2.models import (
+    content_based,
+    matrix_factorization,
+    user_knn,
+)
 
 
 def test_content_based_scores():
@@ -117,3 +120,57 @@ def test_matrix_factorization_invalid_parameters():
 
     with pytest.raises(ValueError):
         matrix_factorization(data, n_factors=0)
+
+
+def test_user_knn_recommends_neighbor_movies():
+    ratings = pd.DataFrame({
+        "user": [1, 1, 2, 2, 3, 3],
+        "item": [10, 20, 10, 30, 40, 50],
+        "rating": [5, 1, 5, 5, 5, 5],
+        "timestamp": [1, 2, 3, 4, 5, 6],
+    })
+
+    data = index_data(
+        ratings,
+        catalogue_ids=np.array([10, 20, 30, 40, 50]),
+    )
+
+    model = user_knn(
+        data,
+        k=1,
+        similarity="cosine",
+    )
+
+    scores = model(np.array([0]))
+
+    assert scores.shape == (1, 5)
+    assert np.isfinite(scores).all()
+
+    # User 1 and user 2 both like movie 10.
+    # Movie 30 should rank above unrelated movie 40.
+    movie_30 = np.where(data.item_ids == 30)[0][0]
+    movie_40 = np.where(data.item_ids == 40)[0][0]
+
+    assert scores[0, movie_30] > scores[0, movie_40]
+
+
+def test_user_knn_invalid_parameters():
+    import pytest
+
+    ratings = pd.DataFrame({
+        "user": [1],
+        "item": [10],
+        "rating": [5],
+        "timestamp": [1],
+    })
+
+    data = index_data(
+        ratings,
+        catalogue_ids=np.array([10]),
+    )
+
+    with pytest.raises(ValueError):
+        user_knn(data, k=0)
+
+    with pytest.raises(ValueError):
+        user_knn(data, similarity="invalid")
