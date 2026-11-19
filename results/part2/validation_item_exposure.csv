@@ -1,0 +1,6 @@
+model,popular_recommendation_share
+ContentBased,0.12906846240179573
+ItemKNN,0.9966329966329966
+MatrixFactorization,0.7245791245791247
+MostPopular,1.0
+UserKNN,0.9995510662177329

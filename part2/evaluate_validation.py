@@ -10,6 +10,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import json
 
 from run_all import (
     K,
@@ -73,6 +74,7 @@ def evaluate_per_user(scorer, data, validation, batch_size=128):
                 f"precision@{K}": precision_at_k(ranked_items, truth),
                 f"recall@{K}": recall_at_k(ranked_items, truth),
                 f"ndcg@{K}": ndcg_at_k(ranked_items, truth),
+                "recommended_items": json.dumps(ranked_items.tolist()),
             })
 
     per_user = pd.DataFrame(records)
