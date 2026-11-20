@@ -3,7 +3,7 @@
 import numpy as np
 import pandas as pd
 
-from run_all import (
+from part1.run_all import (
     precision_at_k,
     recall_at_k,
     ndcg_at_k,

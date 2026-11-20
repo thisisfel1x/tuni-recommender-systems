@@ -4,7 +4,7 @@
 import numpy as np
 import pandas as pd
 
-from run_all import index_data
+from part1.run_all import index_data
 from part2.models import (
     content_based,
     matrix_factorization,

@@ -7,7 +7,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from run_all import (
+from part1.run_all import (
     REL_THRESHOLD,
     load_ratings,
     temporal_split,

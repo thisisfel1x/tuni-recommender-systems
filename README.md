@@ -21,7 +21,7 @@ The data directory must contain `ratings.dat` and `movies.dat`
 This command reproduces the Part 1 results and figures.
 
 ```bash
-python run_all.py --data-dir /path/to/ml-1m --out-dir results/part1
+python -m part1.run_all --data-dir /path/to/ml-1m --out-dir results/part1
 ```
 
 ## Part 1
@@ -29,9 +29,9 @@ python run_all.py --data-dir /path/to/ml-1m --out-dir results/part1
 - `results/part1/results.csv`: final test results, same columns as the course results template
 - `results/part1/tuning_val.csv`: all validation runs used for tuning
 - `results/part1/split_report.csv`, `results/part1/data_summary.json`: split and dataset statistics
-- `figures/`: plots used in the report
+- `figures/part1/`: plots used in the report
 
-The seed is fixed to 123 (`SEED` in `run_all.py`, can be changed with `--seed`).
+The seed is fixed to 123 (`SEED` in `part1/run_all.py`, can be changed with `--seed`).
 Tests: `python -m pytest`
 
 ## Part 2

@@ -6,7 +6,7 @@ from itertools import product
 
 import pandas as pd
 
-from run_all import (
+from part1.run_all import (
     load_ratings,
     temporal_split,
     index_data,

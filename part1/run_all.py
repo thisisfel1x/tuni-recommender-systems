@@ -1,6 +1,6 @@
 """Part 1: data characterisation, temporal split, baselines (Most Popular, item-kNN) and metrics.
 
-Usage: python run_all.py --data-dir /path/to/ml-1m
+Usage: python -m part1.run_all --data-dir /path/to/ml-1m
 """
 import argparse
 import json
@@ -273,8 +273,8 @@ def evaluate(score, data, eval_ratings: pd.DataFrame) -> dict:
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--data-dir", type=Path, default=Path("data"), help="directory containing ratings.dat and movies.dat")
-    p.add_argument("--out-dir", type=Path, default=Path("results"))
-    p.add_argument("--fig-dir", type=Path, default=Path("figures"))
+    p.add_argument("--out-dir", type=Path, default=Path("results/part1"))
+    p.add_argument("--fig-dir", type=Path, default=Path("figures/part1"))
     p.add_argument("--seed", type=int, default=SEED)
     p.add_argument("--val-frac", type=float, default=0.05, help="share of the newest ratings used for validation")
     p.add_argument("--test-frac", type=float, default=0.05, help="share of the newest ratings used for test")

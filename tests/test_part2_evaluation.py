@@ -4,7 +4,7 @@
 import numpy as np
 import pandas as pd
 
-from run_all import evaluate, index_data, most_popular
+from part1.run_all import evaluate, index_data, most_popular
 from part2.evaluate_validation import evaluate_per_user, paired_bootstrap
 
 

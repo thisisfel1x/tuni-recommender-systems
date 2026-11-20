@@ -15,7 +15,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from run_all import (
+from part1.run_all import (
     K,
     evaluate,
     index_data,
